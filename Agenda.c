@@ -20,6 +20,7 @@ struct pessoa contato[10];   // criação da varivel de armazenamento dos valores
 
 int main(int argc, char *argv[]) {
 	
+	
 	printf("***************************************\n");
 	printf("***************************************\n"); // Menu prncipal da Agenda e suas funções
 	printf("****       AGENDA DE CONTATOS      ****\n");
@@ -32,44 +33,80 @@ int main(int argc, char *argv[]) {
 	printf("***************************************\n");
 	printf("***************************************\n");
 	
-	int i,op;
+	int i,op,cont=1,busca;// CADASTRO
+	
 	printf("Digite uma opção do MENU principal ?\n");
 	scanf("%i",&op);
-	if(op=1){
-		printf(" Opção CADASTRAR selecionada\n");}
-	      
-	for(i=0;i<10;i++)	{                                   // Estrutura de repetição para adição dos dados do contato 
+	
+		switch (op){
+		case 1:		
+			printf(" Opção CADASTRAR selecionada\n");
+		for(i=0;i<10 && cont==1;i++)	{                                   // Estrutura de repetição para adição dos dados do contato 
+				
+			printf("___________________________\n");
+			printf("Codigo do Contato : ");
+			fflush(stdin);
+			scanf("%i",&contato[i].codigo);
+			
+			printf(" Nome Contato :"); 
+			fflush(stdin);
+			fgets(contato[i].nome,50,stdin);
+			
+			printf(" Telefone Contato :");
+			fflush(stdin);
+			fgets(contato[i].telefone,16,stdin);
+			
+			printf(" E-mail Contato :");
+			fflush(stdin);
+			fgets(contato[i].email,50,stdin);
+			
+			printf(" Data de Nascimento  :");
+			fflush(stdin);
+			fgets(contato[i].D_nasc,11,stdin);
+			
+			printf("Observações :");
+			fflush(stdin);
+			fgets(contato[i].obs,100,stdin);
+			printf("___________________________\n");
 		
-
-	printf("___________________________\n");
-	printf("Codigo do Contato : ");
-	fflush(stdin);
-	scanf("%i",&contato[i].codigo);
+		printf(" Deseja Continuar (1 para SIM )(0 para NAO )");
+		scanf("%d",&cont);
+	}
+	if(cont=0){
+		printf("Digite uma opção do MENU principal ?\n");
+	scanf("%i",&op);
+	}
+		break;	
 	
-	printf(" Nome Contato :"); 
-	fflush(stdin);
-	fgets(contato[i].nome,50,stdin);
+	case 2://LISTAR
+	    printf("Opcao LISTAR selecionada! \n");
+		for(i=0;i<10 && cont==1;i++)	{
+			printf("___________________________\n");
+			printf("Codigo do Contato : \n",&contato[i].codigo);
+		    printf("nome : \n",&contato[i].nome);
+		    printf("Telefone : \n",&contato[i].telefone);
+		    printf("E-mail : \n",&contato[i].email);
+		    printf("Data de Nascimento : \n",&contato[i].D_nasc);
+		    printf("Obsevacoes : \n",&contato[i].obs);
+			printf("___________________________\n");
+	}
+		break;
 	
-	printf(" Telefone Contato :");
-	fflush(stdin);
-	fgets(contato[i].telefone,16,stdin);
-	
-	printf(" E-mail Contato :");
-	fflush(stdin);
-	fgets(contato[i].email,50,stdin);
-	
-	printf(" Data de Nascimento  :");
-	fflush(stdin);
-	fgets(contato[i].D_nasc,11,stdin);
-	
-	printf("Observações :");
-	fflush(stdin);
-	fgets(contato[i].obs,100,stdin);
-	printf("___________________________\n");
-	
-
-
-}
+	case 3://BUSCAR
+		
+		printf("Opcao BUSCAR selicionada! \n");
+	   	printf("Infome o codigo :\n");
+		scanf("%i",&busca);
+		
+		for(i=0;i<10 ;i++){
+			if(contato[i].codigo==busca){
+			printf("Codigo %i\n :",&contato[i].codigo);
+			printf("Nome %c\n :",&contato[i].nome);
+			}
+		}
+		break;
+	}
 	return 0;
-}
+	}
+
 
